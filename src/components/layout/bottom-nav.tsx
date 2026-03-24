@@ -34,7 +34,7 @@ export function BottomNav() {
         </Link>
 
         <Link
-          href={{ pathname: '/cases' }}
+          href={{ pathname: '/cases' }} // TODO: Create dedicated /account page
           className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-xs tap-target text-gray-500`}
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

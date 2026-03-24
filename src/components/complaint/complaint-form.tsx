@@ -108,9 +108,17 @@ export function ComplaintForm({ slug, country }: ComplaintFormProps) {
         {...register('desiredOutcome')}
       />
 
-      <div className="sticky bottom-16 bg-white py-3 md:bottom-0">
+      <div className="sticky bottom-16 space-y-2 bg-white py-3 md:bottom-0">
         <Button type="submit" fullWidth size="lg">
           {tc('next')}
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={() => router.push({ pathname: '/complain-about/[slug]/[country]/rights', params: { slug, country } })}
+          fullWidth
+        >
+          {tc('back', { defaultMessage: 'Back' })}
         </Button>
       </div>
     </form>

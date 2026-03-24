@@ -62,7 +62,7 @@ export function IssueSelector({ industry, companyEntityId, companyName, slug, co
 
       {selectedCategory && (
         <div>
-          <h3 className="mb-2 text-sm font-medium text-gray-700">Specific issue</h3>
+          <h3 className="mb-2 text-sm font-medium text-gray-700">{t('specificIssue', { defaultMessage: 'Specific issue' })}</h3>
           <div className="grid gap-2 sm:grid-cols-2">
             {categories
               .find((c) => c.key === selectedCategory)

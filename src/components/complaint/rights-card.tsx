@@ -77,19 +77,31 @@ export function RightsCard({ slug, country, industry }: RightsCardProps) {
         ) : error ? (
           <p className="text-sm text-amber-600">{error}</p>
         ) : (
-          <div className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap">
-            {rights}
-          </div>
+          <>
+            <div className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap">
+              {rights}
+            </div>
+            <p className="mt-3 text-xs text-gray-500 italic">
+              {t('disclaimer', { defaultMessage: 'This information is AI-generated and may not be fully accurate. Verify important details with official sources.' })}
+            </p>
+          </>
         )}
       </Card>
 
-      <div className="sticky bottom-16 bg-white py-3 md:bottom-0">
+      <div className="sticky bottom-16 space-y-2 bg-white py-3 md:bottom-0">
         <Button
           onClick={() => router.push({ pathname: '/complain-about/[slug]/[country]/details', params: { slug, country } })}
           fullWidth
           size="lg"
         >
           {tc('next')}
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={() => router.push({ pathname: '/complain-about/[slug]/[country]', params: { slug, country } })}
+          fullWidth
+        >
+          {tc('back', { defaultMessage: 'Back' })}
         </Button>
       </div>
     </div>

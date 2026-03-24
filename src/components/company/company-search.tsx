@@ -25,6 +25,7 @@ export function CompanySearch() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [searchError, setSearchError] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const search = useCallback(async (q: string) => {
@@ -33,6 +34,7 @@ export function CompanySearch() {
       return;
     }
     setLoading(true);
+    setSearchError(false);
     try {
       const res = await fetch(`/api/companies/search?q=${encodeURIComponent(q)}&country=ID`);
       if (res.ok) {
@@ -40,7 +42,8 @@ export function CompanySearch() {
         setResults(data);
       }
     } catch {
-      // Silently fail
+      setResults([]);
+      setSearchError(true);
     } finally {
       setLoading(false);
     }
@@ -96,7 +99,9 @@ export function CompanySearch() {
 
       {showResults && query.length >= 2 && (
         <div className="absolute z-50 mt-2 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-          {results.length === 0 && !loading ? (
+          {searchError ? (
+            <p className="p-4 text-center text-sm text-red-600">{t('searchError', { defaultMessage: 'Search is temporarily unavailable. Please try again.' })}</p>
+          ) : results.length === 0 && !loading ? (
             <p className="p-4 text-center text-sm text-gray-500">{t('searchNoResults')}</p>
           ) : (
             <ul className="max-h-80 overflow-y-auto">

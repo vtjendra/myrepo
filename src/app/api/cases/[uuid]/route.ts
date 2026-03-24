@@ -7,6 +7,11 @@ export async function GET(
 ) {
   const { uuid } = await params;
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
   const { data: caseData, error } = await supabase
     .from('cases')
@@ -19,6 +24,7 @@ export async function GET(
       responses (id, sender_type, content, created_at)
     `)
     .eq('id', uuid)
+    .eq('user_id', user.id)
     .single();
 
   if (error || !caseData) {
@@ -42,9 +48,22 @@ export async function PATCH(
 
   const body = await request.json();
 
+  // Whitelist allowed fields to prevent mass assignment
+  const allowedFields = ['final_complaint', 'desired_outcome', 'status'] as const;
+  const sanitized: Record<string, unknown> = {};
+  for (const key of allowedFields) {
+    if (key in body) {
+      sanitized[key] = body[key];
+    }
+  }
+
+  if (Object.keys(sanitized).length === 0) {
+    return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 });
+  }
+
   const { data, error } = await supabase
     .from('cases')
-    .update(body)
+    .update(sanitized)
     .eq('id', uuid)
     .eq('user_id', user.id)
     .select()

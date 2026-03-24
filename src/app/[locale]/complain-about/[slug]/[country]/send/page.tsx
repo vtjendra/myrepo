@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { useComplaintStore, makeKey } from '@/stores/complaint-store';
@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Modal } from '@/components/ui/modal';
 import { StepIndicator } from '@/components/complaint/step-indicator';
 import { useParams } from 'next/navigation';
 
@@ -28,15 +29,16 @@ export default function SendPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const supabase = createClient();
 
   // Check auth on mount
-  useState(() => {
+  useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) setIsAuthenticated(true);
     });
-  });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!complaint?.finalComplaint) {
     router.replace({ pathname: '/complain-about/[slug]/[country]/draft', params: { slug, country } });
@@ -92,8 +94,11 @@ export default function SendPage() {
       });
 
       if (!sendRes.ok) {
-        // Case created but email failed — still navigate to case
-        console.error('Email send failed');
+        // Case created but email failed — warn user
+        setError(t('emailFailed', { defaultMessage: 'Your complaint was saved but could not be emailed to the company. You can retry from your case page.' }));
+        clearComplaint(key);
+        router.push({ pathname: '/cases/[uuid]', params: { uuid: caseId } });
+        return;
       }
 
       clearComplaint(key);
@@ -139,6 +144,14 @@ export default function SendPage() {
             </div>
           )}
           {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+          <Button
+            variant="ghost"
+            onClick={() => router.push({ pathname: '/complain-about/[slug]/[country]/draft', params: { slug, country } })}
+            fullWidth
+            className="mt-3"
+          >
+            {tc('back', { defaultMessage: 'Back' })}
+          </Button>
         </Card>
       ) : (
         <div className="space-y-6">
@@ -175,11 +188,40 @@ export default function SendPage() {
 
           {error && <p className="text-sm text-red-600">{error}</p>}
 
-          <div className="sticky bottom-16 bg-white py-3 md:bottom-0">
-            <Button onClick={handleSend} loading={sending} fullWidth size="lg">
+          <div className="sticky bottom-16 space-y-2 bg-white py-3 md:bottom-0">
+            <Button onClick={() => setShowConfirm(true)} loading={sending} fullWidth size="lg">
               {t('sendComplaint', { defaultMessage: 'Send Complaint' })}
             </Button>
+            <Button
+              variant="ghost"
+              onClick={() => router.push({ pathname: '/complain-about/[slug]/[country]/draft', params: { slug, country } })}
+              fullWidth
+            >
+              {tc('back', { defaultMessage: 'Back' })}
+            </Button>
           </div>
+
+          <Modal
+            open={showConfirm}
+            onClose={() => setShowConfirm(false)}
+            title={t('confirmTitle', { defaultMessage: 'Send complaint?' })}
+          >
+            <p className="mb-4 text-sm text-gray-600">
+              {t('confirmDescription', { defaultMessage: 'This will email your complaint directly to the company. This action cannot be undone.' })}
+            </p>
+            <div className="flex gap-3">
+              <Button variant="outline" onClick={() => setShowConfirm(false)} fullWidth>
+                {tc('cancel')}
+              </Button>
+              <Button
+                onClick={() => { setShowConfirm(false); handleSend(); }}
+                loading={sending}
+                fullWidth
+              >
+                {t('confirmSend', { defaultMessage: 'Yes, send it' })}
+              </Button>
+            </div>
+          </Modal>
         </div>
       )}
     </div>

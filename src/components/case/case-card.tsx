@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { statusVariant } from '@/lib/case-status';
 import type { CaseStatus } from '@/lib/supabase/types';
 
 interface CaseCardProps {
@@ -18,17 +19,6 @@ interface CaseCardProps {
     };
   };
 }
-
-const statusVariant: Record<CaseStatus, 'default' | 'success' | 'warning' | 'error' | 'info'> = {
-  drafting: 'default',
-  ready_to_send: 'warning',
-  sent: 'info',
-  acknowledged: 'info',
-  in_progress: 'warning',
-  resolved: 'success',
-  escalated: 'error',
-  closed: 'default',
-};
 
 export function CaseCard({ caseData }: CaseCardProps) {
   const companyName =
@@ -49,7 +39,7 @@ export function CaseCard({ caseData }: CaseCardProps) {
           {caseData.status.replace(/_/g, ' ')}
         </Badge>
       </div>
-      <div className="mt-3 flex items-center justify-between text-xs text-gray-400">
+      <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
         <span>{new Date(caseData.created_at).toLocaleDateString()}</span>
         {caseData.amount_involved && (
           <span>

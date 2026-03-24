@@ -4,22 +4,12 @@ import { createClient } from '@/lib/supabase/server';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { CaseTimeline } from '@/components/case/case-timeline';
+import { statusVariant } from '@/lib/case-status';
 import type { CaseStatus } from '@/lib/supabase/types';
 
 interface PageProps {
   params: Promise<{ locale: string; uuid: string }>;
 }
-
-const statusVariant: Record<CaseStatus, 'default' | 'success' | 'warning' | 'error' | 'info'> = {
-  drafting: 'default',
-  ready_to_send: 'warning',
-  sent: 'info',
-  acknowledged: 'info',
-  in_progress: 'warning',
-  resolved: 'success',
-  escalated: 'error',
-  closed: 'default',
-};
 
 export async function generateMetadata() {
   return {

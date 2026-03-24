@@ -156,7 +156,7 @@ export function DraftViewer({ slug, country, companyName }: DraftViewerProps) {
         )}
       </Card>
 
-      <div className="sticky bottom-16 bg-white py-3 md:bottom-0">
+      <div className="sticky bottom-16 space-y-2 bg-white py-3 md:bottom-0">
         <Button
           onClick={handleContinue}
           disabled={isStreaming || !streamedText}
@@ -164,6 +164,13 @@ export function DraftViewer({ slug, country, companyName }: DraftViewerProps) {
           size="lg"
         >
           {tc('next')}
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={() => router.push({ pathname: '/complain-about/[slug]/[country]/details', params: { slug, country } })}
+          fullWidth
+        >
+          {tc('back', { defaultMessage: 'Back' })}
         </Button>
       </div>
     </div>
