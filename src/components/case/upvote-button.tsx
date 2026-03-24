@@ -3,19 +3,24 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
+import { trackEvent } from '@/lib/analytics';
 
 interface UpvoteButtonProps {
   caseId: string;
   initialCount: number;
+  initialUpvoted?: boolean;
 }
 
-export function UpvoteButton({ caseId, initialCount }: UpvoteButtonProps) {
+export function UpvoteButton({ caseId, initialCount, initialUpvoted }: UpvoteButtonProps) {
   const t = useTranslations('feed');
   const [count, setCount] = useState(initialCount);
-  const [upvoted, setUpvoted] = useState(false);
+  const [upvoted, setUpvoted] = useState(initialUpvoted ?? false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Skip individual fetch if upvote status was provided (batch-fetched by feed API)
+    if (initialUpvoted !== undefined) return;
+
     fetch(`/api/cases/${caseId}/upvote`)
       .then((r) => r.json())
       .then((data) => {
@@ -23,7 +28,7 @@ export function UpvoteButton({ caseId, initialCount }: UpvoteButtonProps) {
         setUpvoted(data.userUpvoted);
       })
       .catch(() => {});
-  }, [caseId]);
+  }, [caseId, initialUpvoted]);
 
   async function handleUpvote() {
     setLoading(true);
@@ -36,6 +41,7 @@ export function UpvoteButton({ caseId, initialCount }: UpvoteButtonProps) {
       const data = await res.json();
       setUpvoted(data.upvoted);
       setCount((prev) => (data.upvoted ? prev + 1 : prev - 1));
+      trackEvent('upvote_toggled', { case_id: caseId });
     } catch {
       // ignore
     } finally {

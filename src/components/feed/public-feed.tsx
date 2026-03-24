@@ -5,12 +5,7 @@ import { useTranslations } from 'next-intl';
 import { CaseFeedCard } from '@/components/feed/case-feed-card';
 import { Button } from '@/components/ui/button';
 
-interface PublicFeedProps {
-  companyEntityId?: string;
-  initialLimit?: number;
-}
-
-type FeedCase = {
+export interface FeedCase {
   id: string;
   issue_category: string;
   issue_subcategory: string | null;
@@ -28,16 +23,27 @@ type FeedCase = {
       logo_url: string | null;
     };
   };
-};
+}
 
-export function PublicFeed({ companyEntityId, initialLimit = 10 }: PublicFeedProps) {
+interface PublicFeedProps {
+  companyEntityId?: string;
+  initialLimit?: number;
+  initialCases?: FeedCase[];
+  initialCursor?: string | null;
+}
+
+export function PublicFeed({ companyEntityId, initialLimit = 10, initialCases, initialCursor }: PublicFeedProps) {
   const t = useTranslations('feed');
   const [sort, setSort] = useState<'recent' | 'active'>('recent');
-  const [cases, setCases] = useState<FeedCase[]>([]);
-  const [nextCursor, setNextCursor] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [cases, setCases] = useState<FeedCase[]>(initialCases ?? []);
+  const [nextCursor, setNextCursor] = useState<string | null>(initialCursor ?? null);
+  const [loading, setLoading] = useState(!initialCases);
+  const [upvotedIds, setUpvotedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    // Skip fetch on initial mount if server-provided data exists
+    if (initialCases && sort === 'recent' && !companyEntityId) return;
+
     setLoading(true);
     const params = new URLSearchParams({ sort, limit: String(initialLimit) });
     if (companyEntityId) params.set('company_entity_id', companyEntityId);
@@ -47,9 +53,10 @@ export function PublicFeed({ companyEntityId, initialLimit = 10 }: PublicFeedPro
       .then((data) => {
         setCases(data.cases || []);
         setNextCursor(data.nextCursor);
+        if (data.userUpvotedIds) setUpvotedIds(new Set(data.userUpvotedIds));
       })
       .finally(() => setLoading(false));
-  }, [sort, companyEntityId, initialLimit]);
+  }, [sort, companyEntityId, initialLimit]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function loadMore() {
     if (!nextCursor) return;
@@ -60,6 +67,9 @@ export function PublicFeed({ companyEntityId, initialLimit = 10 }: PublicFeedPro
     const data = await fetch(`/api/feed?${params}`).then((r) => r.json());
     setCases((prev) => [...prev, ...(data.cases || [])]);
     setNextCursor(data.nextCursor);
+    if (data.userUpvotedIds) {
+      setUpvotedIds((prev) => new Set([...prev, ...data.userUpvotedIds]));
+    }
     setLoading(false);
   }
 
@@ -101,7 +111,7 @@ export function PublicFeed({ companyEntityId, initialLimit = 10 }: PublicFeedPro
       ) : (
         <div className="space-y-3">
           {cases.map((c) => (
-            <CaseFeedCard key={c.id} caseItem={c} />
+            <CaseFeedCard key={c.id} caseItem={c} userUpvoted={upvotedIds.has(c.id)} />
           ))}
         </div>
       )}

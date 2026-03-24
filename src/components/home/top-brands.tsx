@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Card } from '@/components/ui/card';
@@ -22,38 +21,15 @@ interface BrandStat {
   };
 }
 
-export function TopBrands() {
+interface TopBrandsProps {
+  initialIssues?: BrandStat[];
+  initialActive?: BrandStat[];
+}
+
+export function TopBrands({ initialIssues = [], initialActive = [] }: TopBrandsProps) {
   const t = useTranslations('home');
-  const [topIssues, setTopIssues] = useState<BrandStat[]>([]);
-  const [topActive, setTopActive] = useState<BrandStat[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/api/stats')
-      .then((r) => r.json())
-      .then((data) => {
-        setTopIssues(data.topBrandsByIssues || []);
-        setTopActive(data.topBrandsByActivity || []);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="grid gap-6 md:grid-cols-2">
-        {[0, 1].map((i) => (
-          <div key={i} className="animate-pulse">
-            <div className="mb-3 h-6 w-48 rounded bg-gray-200" />
-            <div className="space-y-2">
-              {[0, 1, 2].map((j) => (
-                <div key={j} className="h-14 rounded-lg bg-gray-100" />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
+  const topIssues = initialIssues;
+  const topActive = initialActive;
 
   if (topIssues.length === 0 && topActive.length === 0) return null;
 

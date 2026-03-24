@@ -7,6 +7,7 @@ import { useComplaintStore, makeKey } from '@/stores/complaint-store';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
+import { trackEvent } from '@/lib/analytics';
 
 interface DraftViewerProps {
   slug: string;
@@ -75,6 +76,7 @@ export function DraftViewer({ slug, country, companyName }: DraftViewerProps) {
       setDraft(key, fullText);
       setFinal(key, fullText);
       setEditText(fullText);
+      trackEvent('draft_generated', { company_slug: slug, country, locale });
     } catch {
       setError(t('errorGenerating', { defaultMessage: 'Failed to generate draft. Please try again.' }));
     } finally {
