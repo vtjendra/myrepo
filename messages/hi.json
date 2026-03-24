@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "इस सप्ताह ClaimIt पर",
+    "feedTitle": "सार्वजनिक शिकायतें",
+    "topIssuesTitle": "सबसे अधिक रिपोर्ट (7 दिन)",
+    "topActiveTitle": "सबसे सक्रिय (7 दिन)"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "शिकायत दृश्यता",
+    "visibilityPublic": "सार्वजनिक",
+    "visibilityRecommended": "अनुशंसित",
+    "visibilityPublicDesc": "सार्वजनिक शिकायतें तेज़ी से हल होती हैं। अन्य लोग दबाव बढ़ाने के लिए समर्थन कर सकते हैं।",
+    "visibilityPrivate": "निजी",
+    "visibilityPrivateDesc": "केवल आप और कंपनी ही यह शिकायत देख सकते हैं। आपकी व्यक्तिगत जानकारी हमेशा सुरक्षित रहती है।",
+    "evidence": "सबूत",
+    "evidenceCount": "{count} फ़ाइल संलग्न"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "सबसे हाल का",
+    "sortActive": "सबसे सक्रिय",
+    "loading": "शिकायतें लोड हो रही हैं...",
+    "empty": "अभी तक कोई सार्वजनिक शिकायत नहीं। पहले बनें!",
+    "loadMore": "और लोड करें",
+    "viewDetails": "विवरण देखें",
+    "upvote": "समर्थन"
+  },
+  "cases": {
+    "resolved": "यह मामला हल हो गया है",
+    "markResolved": "हल के रूप में चिह्नित करें",
+    "shareEncourageTitle": "अभी तक हल नहीं हुआ?",
+    "shareEncourageDesc": "अपनी शिकायत दोस्तों और सोशल मीडिया पर साझा करें। अधिक दृश्यता का मतलब कंपनी पर अधिक दबाव।",
+    "public": "सार्वजनिक",
+    "evidenceTitle": "सबूत",
+    "evidenceCount": "{count} फ़ाइल संलग्न",
+    "complaintText": "शिकायत",
+    "timeline": "समयरेखा",
+    "caseCreated": "शिकायत बनाई गई",
+    "caseSent": "शिकायत कंपनी को भेजी गई",
+    "amount": "राशि"
   }
 }

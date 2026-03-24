@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "本周 ClaimIt 动态",
+    "feedTitle": "公开投诉",
+    "topIssuesTitle": "最多举报（7天）",
+    "topActiveTitle": "最活跃（7天）"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "投诉可见性",
+    "visibilityPublic": "公开",
+    "visibilityRecommended": "推荐",
+    "visibilityPublicDesc": "公开投诉解决更快。其他人可以支持以增加压力。",
+    "visibilityPrivate": "私密",
+    "visibilityPrivateDesc": "只有您和公司可以看到此投诉。您的个人信息始终受到保护。",
+    "evidence": "证据",
+    "evidenceCount": "{count} 个文件已附"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "最新",
+    "sortActive": "最活跃",
+    "loading": "加载投诉中...",
+    "empty": "还没有公开投诉。成为第一个提交的人！",
+    "loadMore": "加载更多",
+    "viewDetails": "查看详情",
+    "upvote": "支持"
+  },
+  "cases": {
+    "resolved": "此案已解决",
+    "markResolved": "标记为已解决",
+    "shareEncourageTitle": "还没解决？",
+    "shareEncourageDesc": "将您的投诉分享给朋友和社交媒体。更多关注意味着对公司更大的压力。",
+    "public": "公开",
+    "evidenceTitle": "证据",
+    "evidenceCount": "{count} 个文件已附",
+    "complaintText": "投诉",
+    "timeline": "时间线",
+    "caseCreated": "投诉已创建",
+    "caseSent": "投诉已发送给公司",
+    "amount": "金额"
   }
 }

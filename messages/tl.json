@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "Ngayong Linggo sa ClaimIt",
+    "feedTitle": "Mga Pampublikong Reklamo",
+    "topIssuesTitle": "Pinaka-maraming Nai-report (7 araw)",
+    "topActiveTitle": "Pinaka-aktibo (7 araw)"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "Visibility ng reklamo",
+    "visibilityPublic": "Pampubliko",
+    "visibilityRecommended": "Inirerekomenda",
+    "visibilityPublicDesc": "Mas mabilis maresolba ang pampublikong reklamo. Maaaring mag-upvote ang iba para magdagdag ng pressure.",
+    "visibilityPrivate": "Pribado",
+    "visibilityPrivateDesc": "Ikaw at ang kumpanya lang ang makakakita ng reklamong ito. Ang iyong personal na impormasyon ay palaging protektado.",
+    "evidence": "Ebidensya",
+    "evidenceCount": "{count} (mga) file na nakalakip"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "Pinakabago",
+    "sortActive": "Pinaka-aktibo",
+    "loading": "Nilo-load ang mga reklamo...",
+    "empty": "Wala pang pampublikong reklamo. Maging una!",
+    "loadMore": "Mag-load pa",
+    "viewDetails": "Tingnan ang detalye",
+    "upvote": "I-upvote"
+  },
+  "cases": {
+    "resolved": "Naresolba na ang kasong ito",
+    "markResolved": "Markahan bilang Nalutas",
+    "shareEncourageTitle": "Hindi pa nalutas?",
+    "shareEncourageDesc": "Ibahagi ang iyong reklamo sa mga kaibigan at social media. Mas maraming makakakita, mas maraming pressure sa kumpanya.",
+    "public": "Pampubliko",
+    "evidenceTitle": "Ebidensya",
+    "evidenceCount": "{count} (mga) file na nakalakip",
+    "complaintText": "Reklamo",
+    "timeline": "Timeline",
+    "caseCreated": "Reklamo ginawa",
+    "caseSent": "Reklamo ipinadala sa kumpanya",
+    "amount": "Halaga"
   }
 }

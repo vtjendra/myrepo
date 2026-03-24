@@ -91,10 +91,27 @@ export interface Case {
   final_complaint: string;
   status: CaseStatus;
   is_public: boolean;
+  evidence_urls: string[];
+  upvote_count: number;
   sent_at: string | null;
   resolved_at: string | null;
   created_at: string;
   updated_at: string;
+}
+
+export interface CaseUpvote {
+  id: string;
+  case_id: string;
+  user_id: string;
+  created_at: string;
+}
+
+export interface FollowUp {
+  id: string;
+  case_id: string;
+  attempt_number: number;
+  sent_at: string;
+  status: string;
 }
 
 export interface Response {

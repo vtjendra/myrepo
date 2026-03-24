@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "Tuần Này trên ClaimIt",
+    "feedTitle": "Khiếu Nại Công Khai",
+    "topIssuesTitle": "Được báo cáo nhiều nhất (7 ngày)",
+    "topActiveTitle": "Hoạt động nhiều nhất (7 ngày)"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "Hiển thị khiếu nại",
+    "visibilityPublic": "Công khai",
+    "visibilityRecommended": "Khuyến nghị",
+    "visibilityPublicDesc": "Khiếu nại công khai được giải quyết nhanh hơn. Người khác có thể ủng hộ để tăng áp lực.",
+    "visibilityPrivate": "Riêng tư",
+    "visibilityPrivateDesc": "Chỉ bạn và công ty mới có thể xem khiếu nại này. Thông tin cá nhân của bạn luôn được bảo vệ.",
+    "evidence": "Bằng chứng",
+    "evidenceCount": "{count} tệp đính kèm"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "Mới nhất",
+    "sortActive": "Hoạt động nhất",
+    "loading": "Đang tải khiếu nại...",
+    "empty": "Chưa có khiếu nại công khai. Hãy là người đầu tiên!",
+    "loadMore": "Tải thêm",
+    "viewDetails": "Xem chi tiết",
+    "upvote": "Ủng hộ"
+  },
+  "cases": {
+    "resolved": "Vụ việc này đã được giải quyết",
+    "markResolved": "Đánh dấu đã giải quyết",
+    "shareEncourageTitle": "Chưa được giải quyết?",
+    "shareEncourageDesc": "Chia sẻ khiếu nại của bạn với bạn bè và trên mạng xã hội. Càng nhiều người biết, càng nhiều áp lực lên công ty.",
+    "public": "Công khai",
+    "evidenceTitle": "Bằng chứng",
+    "evidenceCount": "{count} tệp đính kèm",
+    "complaintText": "Khiếu nại",
+    "timeline": "Dòng thời gian",
+    "caseCreated": "Khiếu nại đã tạo",
+    "caseSent": "Khiếu nại đã gửi đến công ty",
+    "amount": "Số tiền"
   }
 }

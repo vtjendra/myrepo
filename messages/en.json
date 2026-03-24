@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "This Week on ClaimIt",
+    "feedTitle": "Public Complaints",
+    "topIssuesTitle": "Most Reported (7 days)",
+    "topActiveTitle": "Most Active (7 days)"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "Complaint visibility",
+    "visibilityPublic": "Public",
+    "visibilityRecommended": "Recommended",
+    "visibilityPublicDesc": "Public complaints get resolved faster. Others can upvote to add pressure and raise awareness.",
+    "visibilityPrivate": "Private",
+    "visibilityPrivateDesc": "Only you and the company can see this complaint. Your personal details are always protected.",
+    "evidence": "Evidence",
+    "evidenceCount": "{count} file(s) attached"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "Most Recent",
+    "sortActive": "Most Active",
+    "loading": "Loading complaints...",
+    "empty": "No public complaints yet. Be the first to file one!",
+    "loadMore": "Load more",
+    "viewDetails": "View details",
+    "upvote": "Upvote"
+  },
+  "cases": {
+    "resolved": "This case has been resolved",
+    "markResolved": "Mark as Resolved",
+    "shareEncourageTitle": "Not resolved yet?",
+    "shareEncourageDesc": "Share your complaint with friends and on social media. More visibility means more pressure on the company to respond.",
+    "public": "Public",
+    "evidenceTitle": "Evidence",
+    "evidenceCount": "{count} file(s) attached",
+    "complaintText": "Complaint",
+    "timeline": "Timeline",
+    "caseCreated": "Complaint created",
+    "caseSent": "Complaint sent to company",
+    "amount": "Amount"
   }
 }

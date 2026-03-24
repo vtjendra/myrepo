@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "Minggu Ini di ClaimIt",
+    "feedTitle": "Aduan Awam",
+    "topIssuesTitle": "Paling Banyak Dilaporkan (7 hari)",
+    "topActiveTitle": "Paling Aktif (7 hari)"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "Keterlihatan aduan",
+    "visibilityPublic": "Awam",
+    "visibilityRecommended": "Disyorkan",
+    "visibilityPublicDesc": "Aduan awam diselesaikan lebih cepat. Orang lain boleh menyokong untuk menambah tekanan.",
+    "visibilityPrivate": "Peribadi",
+    "visibilityPrivateDesc": "Hanya anda dan syarikat yang boleh melihat aduan ini. Maklumat peribadi anda sentiasa dilindungi.",
+    "evidence": "Bukti",
+    "evidenceCount": "{count} fail dilampirkan"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "Terkini",
+    "sortActive": "Paling Aktif",
+    "loading": "Memuatkan aduan...",
+    "empty": "Tiada aduan awam lagi. Jadilah yang pertama!",
+    "loadMore": "Muat lagi",
+    "viewDetails": "Lihat butiran",
+    "upvote": "Sokong"
+  },
+  "cases": {
+    "resolved": "Kes ini telah diselesaikan",
+    "markResolved": "Tandakan Selesai",
+    "shareEncourageTitle": "Belum selesai?",
+    "shareEncourageDesc": "Kongsi aduan anda dengan rakan dan di media sosial. Lebih banyak perhatian bermakna lebih banyak tekanan kepada syarikat.",
+    "public": "Awam",
+    "evidenceTitle": "Bukti",
+    "evidenceCount": "{count} fail dilampirkan",
+    "complaintText": "Aduan",
+    "timeline": "Garis masa",
+    "caseCreated": "Aduan dibuat",
+    "caseSent": "Aduan dihantar kepada syarikat",
+    "amount": "Jumlah"
   }
 }

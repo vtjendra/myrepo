@@ -28,6 +28,8 @@ export const createCaseSchema = z.object({
   desiredOutcome: z.enum(DESIRED_OUTCOMES),
   draftComplaint: z.string().min(1),
   finalComplaint: z.string().min(1),
+  isPublic: z.boolean().default(false),
+  evidenceUrls: z.array(z.string().url()).max(3).default([]),
 });
 
 export type IssueSelectorData = z.infer<typeof issueSelectorSchema>;
