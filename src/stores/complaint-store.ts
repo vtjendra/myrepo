@@ -19,6 +19,7 @@ interface ComplaintData {
   rightsCardText: string | null;
   draftComplaint: string | null;
   finalComplaint: string | null;
+  isPublic: boolean;
   updatedAt: number;
 }
 
@@ -31,6 +32,7 @@ interface ComplaintStore {
   setDetails: (key: string, details: Partial<ComplaintData>) => void;
   setDraft: (key: string, draft: string) => void;
   setFinal: (key: string, final_text: string) => void;
+  setVisibility: (key: string, isPublic: boolean) => void;
   addEvidence: (key: string, url: string) => void;
   removeEvidence: (key: string, url: string) => void;
   clearComplaint: (key: string) => void;
@@ -58,6 +60,7 @@ const defaultComplaint: ComplaintData = {
   rightsCardText: null,
   draftComplaint: null,
   finalComplaint: null,
+  isPublic: false,
   updatedAt: Date.now(),
 };
 
@@ -149,6 +152,18 @@ export const useComplaintStore = create<ComplaintStore>()(
             [key]: {
               ...(state.complaints[key] || defaultComplaint),
               finalComplaint: final_text,
+              updatedAt: Date.now(),
+            },
+          },
+        })),
+
+      setVisibility: (key, isPublic) =>
+        set((state) => ({
+          complaints: {
+            ...state.complaints,
+            [key]: {
+              ...(state.complaints[key] || defaultComplaint),
+              isPublic,
               updatedAt: Date.now(),
             },
           },

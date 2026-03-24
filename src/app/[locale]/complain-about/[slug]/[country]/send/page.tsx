@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { StepIndicator } from '@/components/complaint/step-indicator';
+import { VisibilityToggle } from '@/components/complaint/visibility-toggle';
 import { useParams } from 'next/navigation';
 
 export default function SendPage() {
@@ -18,9 +19,8 @@ export default function SendPage() {
   const key = makeKey(slug, country);
 
   const t = useTranslations('send');
-  const tc = useTranslations('common');
   const router = useRouter();
-  const { getComplaint, clearComplaint } = useComplaintStore();
+  const { getComplaint, setVisibility, clearComplaint } = useComplaintStore();
   const complaint = getComplaint(key);
 
   const [authEmail, setAuthEmail] = useState('');
@@ -76,6 +76,8 @@ export default function SendPage() {
           desiredOutcome: complaint!.desiredOutcome,
           draftComplaint: complaint!.draftComplaint,
           finalComplaint: complaint!.finalComplaint,
+          isPublic: complaint!.isPublic,
+          evidenceUrls: complaint!.evidenceUrls,
         }),
       });
 
@@ -170,8 +172,24 @@ export default function SendPage() {
                   {complaint.finalComplaint}
                 </p>
               </div>
+              {complaint.evidenceUrls.length > 0 && (
+                <div>
+                  <span className="text-xs font-medium uppercase text-gray-500">
+                    {t('evidence', { defaultMessage: 'Evidence' })}
+                  </span>
+                  <p className="text-sm text-gray-700">
+                    {t('evidenceCount', { defaultMessage: '{count} file(s) attached', count: complaint.evidenceUrls.length })}
+                  </p>
+                </div>
+              )}
             </div>
           </Card>
+
+          {/* Public / Private Toggle */}
+          <VisibilityToggle
+            isPublic={complaint.isPublic}
+            onChange={(isPublic) => setVisibility(key, isPublic)}
+          />
 
           {error && <p className="text-sm text-red-600">{error}</p>}
 

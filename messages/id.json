@@ -42,7 +42,11 @@
     "step3Title": "Kirim dan pantau",
     "step3Desc": "Kirim langsung ke perusahaan dan pantau tanggapan mereka",
     "recentCasesTitle": "Kasus publik terbaru",
-    "countrySelectorLabel": "Negara"
+    "countrySelectorLabel": "Negara",
+    "activityTitle": "Minggu Ini di ClaimIt",
+    "feedTitle": "Keluhan Publik",
+    "topIssuesTitle": "Paling Banyak Dilaporkan (7 hari)",
+    "topActiveTitle": "Paling Aktif (7 hari)"
   },
   "categories": {
     "title": "Apa masalah Anda?",
@@ -127,7 +131,15 @@
     "sending": "Mengirim...",
     "successTitle": "Keluhan terkirim!",
     "successMessage": "Keluhan Anda telah dikirim ke {company}. Kami akan memantau tanggapan mereka.",
-    "honeypotLabel": "Biarkan kolom ini kosong"
+    "honeypotLabel": "Biarkan kolom ini kosong",
+    "visibilityTitle": "Visibilitas keluhan",
+    "visibilityPublic": "Publik",
+    "visibilityRecommended": "Direkomendasikan",
+    "visibilityPublicDesc": "Keluhan publik lebih cepat terselesaikan. Orang lain dapat mendukung untuk menambah tekanan.",
+    "visibilityPrivate": "Pribadi",
+    "visibilityPrivateDesc": "Hanya Anda dan perusahaan yang dapat melihat keluhan ini. Data pribadi Anda selalu dilindungi.",
+    "evidence": "Bukti",
+    "evidenceCount": "{count} file terlampir"
   },
   "cookie": {
     "message": "Kami menggunakan cookie untuk meningkatkan pengalaman Anda.",
@@ -138,5 +150,28 @@
     "switchLabel": "Bahasa",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "Terbaru",
+    "sortActive": "Paling Aktif",
+    "loading": "Memuat keluhan...",
+    "empty": "Belum ada keluhan publik. Jadilah yang pertama!",
+    "loadMore": "Muat lainnya",
+    "viewDetails": "Lihat detail",
+    "upvote": "Dukung"
+  },
+  "cases": {
+    "resolved": "Kasus ini telah diselesaikan",
+    "markResolved": "Tandai Selesai",
+    "shareEncourageTitle": "Belum terselesaikan?",
+    "shareEncourageDesc": "Bagikan keluhan Anda ke teman dan media sosial. Semakin banyak yang tahu, semakin besar tekanan ke perusahaan untuk merespons.",
+    "public": "Publik",
+    "evidenceTitle": "Bukti",
+    "evidenceCount": "{count} file terlampir",
+    "complaintText": "Keluhan",
+    "timeline": "Kronologi",
+    "caseCreated": "Keluhan dibuat",
+    "caseSent": "Keluhan dikirim ke perusahaan",
+    "amount": "Jumlah"
   }
 }

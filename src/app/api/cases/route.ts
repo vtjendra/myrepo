@@ -39,6 +39,8 @@ export async function POST(request: NextRequest) {
       desired_outcome: data.desiredOutcome,
       draft_complaint: data.draftComplaint,
       final_complaint: data.finalComplaint,
+      is_public: data.isPublic,
+      evidence_urls: data.evidenceUrls,
       status: 'ready_to_send',
     })
     .select('id')

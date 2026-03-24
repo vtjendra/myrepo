@@ -42,7 +42,11 @@
     "step3Title": "Send and track",
     "step3Desc": "Send directly to the company and track their response",
     "recentCasesTitle": "Recent public cases",
-    "countrySelectorLabel": "Country"
+    "countrySelectorLabel": "Country",
+    "activityTitle": "สัปดาห์นี้บน ClaimIt",
+    "feedTitle": "ข้อร้องเรียนสาธารณะ",
+    "topIssuesTitle": "รายงานมากที่สุด (7 วัน)",
+    "topActiveTitle": "ใช้งานมากที่สุด (7 วัน)"
   },
   "categories": {
     "title": "What's your issue?",
@@ -127,7 +131,15 @@
     "sending": "Sending...",
     "successTitle": "Complaint sent!",
     "successMessage": "Your complaint has been sent to {company}. We'll track their response.",
-    "honeypotLabel": "Leave this field empty"
+    "honeypotLabel": "Leave this field empty",
+    "visibilityTitle": "การมองเห็นข้อร้องเรียน",
+    "visibilityPublic": "สาธารณะ",
+    "visibilityRecommended": "แนะนำ",
+    "visibilityPublicDesc": "ข้อร้องเรียนสาธารณะได้รับการแก้ไขเร็วกว่า ผู้อื่นสามารถสนับสนุนเพื่อเพิ่มแรงกดดัน",
+    "visibilityPrivate": "ส่วนตัว",
+    "visibilityPrivateDesc": "เฉพาะคุณและบริษัทเท่านั้นที่สามารถดูข้อร้องเรียนนี้ ข้อมูลส่วนบุคคลของคุณได้รับการปกป้องเสมอ",
+    "evidence": "หลักฐาน",
+    "evidenceCount": "{count} ไฟล์แนบ"
   },
   "cookie": {
     "message": "We use cookies to improve your experience.",
@@ -138,5 +150,28 @@
     "switchLabel": "Language",
     "id": "Bahasa Indonesia",
     "en": "English"
+  },
+  "feed": {
+    "sortRecent": "ล่าสุด",
+    "sortActive": "ใช้งานมากสุด",
+    "loading": "กำลังโหลดข้อร้องเรียน...",
+    "empty": "ยังไม่มีข้อร้องเรียนสาธารณะ เป็นคนแรกที่ยื่น!",
+    "loadMore": "โหลดเพิ่ม",
+    "viewDetails": "ดูรายละเอียด",
+    "upvote": "สนับสนุน"
+  },
+  "cases": {
+    "resolved": "คดีนี้ได้รับการแก้ไขแล้ว",
+    "markResolved": "ทำเครื่องหมายว่าแก้ไขแล้ว",
+    "shareEncourageTitle": "ยังไม่ได้รับการแก้ไข?",
+    "shareEncourageDesc": "แชร์ข้อร้องเรียนของคุณกับเพื่อนและบนโซเชียลมีเดีย ยิ่งมีคนเห็นมาก ยิ่งกดดันบริษัทมากขึ้น",
+    "public": "สาธารณะ",
+    "evidenceTitle": "หลักฐาน",
+    "evidenceCount": "{count} ไฟล์แนบ",
+    "complaintText": "ข้อร้องเรียน",
+    "timeline": "ไทม์ไลน์",
+    "caseCreated": "สร้างข้อร้องเรียนแล้ว",
+    "caseSent": "ส่งข้อร้องเรียนไปยังบริษัทแล้ว",
+    "amount": "จำนวนเงิน"
   }
 }
