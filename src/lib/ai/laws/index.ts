@@ -7,10 +7,11 @@ import { TH } from './th';
 import { VN } from './vn';
 import { SG } from './sg';
 import { IN } from './in';
+import { US } from './us';
 
 export type { IndustryLaw, LawsMap } from './types';
 
-const LAWS: LawsMap = { ID, MY, PH, TH, VN, SG, IN };
+const LAWS: LawsMap = { ID, MY, PH, TH, VN, SG, IN, US };
 
 export function getLawReference(country_code: string, industry: string): IndustryLaw | null {
   return LAWS[country_code.toUpperCase()]?.[industry] ?? null;

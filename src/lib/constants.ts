@@ -105,7 +105,31 @@ export const SUPPORTED_CURRENCIES = [
   { code: 'PHP', symbol: '₱', name: 'Philippine Peso' },
   { code: 'THB', symbol: '฿', name: 'Thai Baht' },
   { code: 'VND', symbol: '₫', name: 'Vietnamese Dong' },
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee' },
 ] as const;
+
+export const COUNTRY_REGISTRY: Record<string, { name: string; currency: string; flag: string }> = {
+  ID: { name: 'Indonesia', currency: 'IDR', flag: '🇮🇩' },
+  US: { name: 'United States', currency: 'USD', flag: '🇺🇸' },
+  SG: { name: 'Singapore', currency: 'SGD', flag: '🇸🇬' },
+  MY: { name: 'Malaysia', currency: 'MYR', flag: '🇲🇾' },
+  PH: { name: 'Philippines', currency: 'PHP', flag: '🇵🇭' },
+  TH: { name: 'Thailand', currency: 'THB', flag: '🇹🇭' },
+  VN: { name: 'Vietnam', currency: 'VND', flag: '🇻🇳' },
+  IN: { name: 'India', currency: 'INR', flag: '🇮🇳' },
+  GB: { name: 'United Kingdom', currency: 'GBP', flag: '🇬🇧' },
+  AU: { name: 'Australia', currency: 'AUD', flag: '🇦🇺' },
+  CA: { name: 'Canada', currency: 'CAD', flag: '🇨🇦' },
+  JP: { name: 'Japan', currency: 'JPY', flag: '🇯🇵' },
+  DE: { name: 'Germany', currency: 'EUR', flag: '🇩🇪' },
+  FR: { name: 'France', currency: 'EUR', flag: '🇫🇷' },
+  BR: { name: 'Brazil', currency: 'BRL', flag: '🇧🇷' },
+  MX: { name: 'Mexico', currency: 'MXN', flag: '🇲🇽' },
+  ZA: { name: 'South Africa', currency: 'ZAR', flag: '🇿🇦' },
+  NG: { name: 'Nigeria', currency: 'NGN', flag: '🇳🇬' },
+  KE: { name: 'Kenya', currency: 'KES', flag: '🇰🇪' },
+  AE: { name: 'United Arab Emirates', currency: 'AED', flag: '🇦🇪' },
+};
 
 export const MAX_EVIDENCE_FILES = 3;
 export const MAX_EVIDENCE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB

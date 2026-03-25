@@ -2,6 +2,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { COUNTRY_REGISTRY } from '@/lib/constants';
 
 interface ComplaintData {
   companyEntityId: string | null;
@@ -54,7 +55,7 @@ const defaultComplaint: ComplaintData = {
   whatHappened: null,
   whenOccurred: null,
   amountInvolved: null,
-  currencyCode: 'IDR',
+  currencyCode: 'USD',
   desiredOutcome: null,
   evidenceUrls: [],
   rightsCardText: null,
@@ -91,6 +92,7 @@ export const useComplaintStore = create<ComplaintStore>()(
             [key]: {
               ...(state.complaints[key] || defaultComplaint),
               ...data,
+              currencyCode: COUNTRY_REGISTRY[data.countryCode]?.currency ?? 'USD',
               updatedAt: Date.now(),
             },
           },
