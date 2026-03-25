@@ -53,8 +53,25 @@ export async function GET(request: NextRequest) {
 
   const nextCursor = data.length === limit ? data[data.length - 1].created_at : null;
 
-  return NextResponse.json({
-    cases: data,
-    nextCursor,
-  });
+  // Batch-fetch upvote status for authenticated users (avoids N+1 per-card fetches)
+  let userUpvotedIds: string[] = [];
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user && data.length > 0) {
+    const caseIds = data.map((c) => c.id);
+    const { data: upvotes } = await supabase
+      .from('case_upvotes')
+      .select('case_id')
+      .eq('user_id', user.id)
+      .in('case_id', caseIds);
+    userUpvotedIds = (upvotes || []).map((u) => u.case_id);
+  }
+
+  return NextResponse.json(
+    { cases: data, nextCursor, userUpvotedIds },
+    {
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+      },
+    },
+  );
 }

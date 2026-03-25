@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { StepIndicator } from '@/components/complaint/step-indicator';
 import { VisibilityToggle } from '@/components/complaint/visibility-toggle';
+import { trackEvent } from '@/lib/analytics';
 import { useParams } from 'next/navigation';
 
 export default function SendPage() {
@@ -98,6 +99,7 @@ export default function SendPage() {
         console.error('Email send failed');
       }
 
+      trackEvent('complaint_sent', { company_slug: slug, country });
       clearComplaint(key);
       router.push({ pathname: '/cases/[uuid]', params: { uuid: caseId } });
     } catch (err) {

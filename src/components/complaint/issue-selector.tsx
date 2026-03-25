@@ -6,6 +6,7 @@ import { useRouter } from '@/i18n/navigation';
 import { ISSUE_CATEGORIES } from '@/lib/constants';
 import { useComplaintStore, makeKey } from '@/stores/complaint-store';
 import { Button } from '@/components/ui/button';
+import { trackEvent } from '@/lib/analytics';
 import type { Industry } from '@/lib/supabase/types';
 
 interface IssueSelectorProps {
@@ -32,6 +33,7 @@ export function IssueSelector({ industry, companyEntityId, companyName, slug, co
     const key = makeKey(slug, country);
     setCompany(key, { companyEntityId, companyName, companySlug: slug, countryCode: country });
     setIssue(key, selectedCategory, selectedSub);
+    trackEvent('complaint_started', { company_slug: slug, country });
     router.push({ pathname: '/complain-about/[slug]/[country]/rights', params: { slug, country } });
   }
 

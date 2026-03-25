@@ -27,6 +27,7 @@ interface CaseFeedCardProps {
       };
     };
   };
+  userUpvoted?: boolean;
 }
 
 const statusVariant: Record<string, 'default' | 'success' | 'warning' | 'error' | 'info'> = {
@@ -37,7 +38,7 @@ const statusVariant: Record<string, 'default' | 'success' | 'warning' | 'error' 
   escalated: 'error',
 };
 
-export function CaseFeedCard({ caseItem }: CaseFeedCardProps) {
+export function CaseFeedCard({ caseItem, userUpvoted }: CaseFeedCardProps) {
   const t = useTranslations('feed');
   const entity = caseItem.company_entity;
   const company = entity.company;
@@ -74,7 +75,7 @@ export function CaseFeedCard({ caseItem }: CaseFeedCardProps) {
           </p>
           <p className="mt-2 text-sm text-gray-700">{truncatedText}</p>
           <div className="mt-3 flex items-center gap-3">
-            <UpvoteButton caseId={caseItem.id} initialCount={caseItem.upvote_count} />
+            <UpvoteButton caseId={caseItem.id} initialCount={caseItem.upvote_count} initialUpvoted={userUpvoted} />
             <Link
               href={{ pathname: '/cases/[uuid]', params: { uuid: caseItem.id } }}
               className="text-xs font-medium text-brand-600 hover:text-brand-700"

@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { BottomNav } from '@/components/layout/bottom-nav';
+import { GoogleAnalytics } from '@/components/layout/google-analytics';
 import '@/app/globals.css';
 
 export function generateStaticParams() {
@@ -28,6 +29,21 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir="ltr">
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        />
+      </head>
       <body className="flex min-h-screen flex-col pb-16 font-sans md:pb-0">
         <NextIntlClientProvider messages={messages}>
           <Header />
@@ -35,6 +51,7 @@ export default async function LocaleLayout({
           <Footer />
           <BottomNav />
         </NextIntlClientProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );
