@@ -6,8 +6,9 @@
         "hooks": [
           {
             "type": "command",
-            "statusMessage": "Running unit tests before commit...",
-            "command": "cmd=$(jq -r '.tool_input.command // \"\"'); if echo \"$cmd\" | grep -qE 'git commit'; then if ! npm --prefix /home/user/myrepo test; then printf '{\"continue\":false,\"stopReason\":\"Tests failed — commit blocked. Run npm test to see failures.\"}'; exit 2; fi; fi"
+            "command": "cmd=$(jq -r '.tool_input.command // \"\"'); if echo \"$cmd\" | grep -q 'git commit'; then if ! bash scripts/run-tests.sh 2>&1; then printf '{\"continue\":false,\"stopReason\":\"QC tests failed — commit blocked. Run npm test to see failures.\"}'; exit 1; fi; fi",
+            "timeout": 120,
+            "statusMessage": "Running QC tests before commit..."
           }
         ]
       }
