@@ -64,6 +64,7 @@ export interface CompanyEntity {
   regulator_name: string | null;
   regulator_url: string | null;
   is_active: boolean;
+  crp_enabled: boolean;
   created_at: string;
 }
 
@@ -141,6 +142,49 @@ export interface Subscription {
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
   current_period_end: string | null;
+  created_at: string;
+}
+
+// CRP (Consumer Resolution Protocol) — roadmap scaffold types
+
+export type CrpDeliveryStatus = 'pending' | 'delivered' | 'failed' | 'acknowledged' | 'resolved';
+
+export interface ApiKey {
+  id: string;
+  user_id: string;
+  name: string;
+  key_hash: string;
+  key_prefix: string;
+  tier: SubscriptionTier;
+  is_active: boolean;
+  requests_this_month: number;
+  last_used_at: string | null;
+  created_at: string;
+}
+
+export interface CompanyWebhookEndpoint {
+  id: string;
+  company_entity_id: string;
+  endpoint_url: string;
+  secret_hash: string;
+  is_active: boolean;
+  avg_response_hours: number | null;
+  resolution_rate: number | null;
+  total_received: number;
+  total_resolved: number;
+  last_active_at: string | null;
+  registered_at: string;
+}
+
+export interface WebhookDelivery {
+  id: string;
+  case_id: string;
+  company_entity_id: string;
+  status: CrpDeliveryStatus;
+  attempts: number;
+  last_attempted_at: string | null;
+  delivered_at: string | null;
+  resolution_payload: Record<string, unknown> | null;
   created_at: string;
 }
 
