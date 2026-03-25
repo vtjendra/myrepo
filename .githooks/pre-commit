@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# ClaimIt pre-commit hook — runs full QC test suite before every commit
+# Install: git config core.hooksPath .githooks
+echo "▶  Pre-commit: running QC test suite…"
+bash scripts/run-tests.sh
