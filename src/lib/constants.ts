@@ -64,6 +64,12 @@ export const ISSUE_CATEGORIES = {
     { key: 'warranty', subcategories: ['warranty_denial', 'repair_delay', 'replacement_issue'] },
     { key: 'data_privacy', subcategories: ['data_breach', 'unauthorized_sharing', 'deletion_request'] },
   ],
+  retail: [
+    { key: 'returns_refunds', subcategories: ['return_denied', 'no_receipt_return', 'partial_refund'] },
+    { key: 'warranty', subcategories: ['warranty_denial', 'repair_quality', 'spare_parts_unavailable'] },
+    { key: 'pricing', subcategories: ['overcharge', 'misleading_price_tag', 'hidden_fees'] },
+    { key: 'product_quality', subcategories: ['defective', 'counterfeit', 'mislabeled'] },
+  ],
   other: [
     { key: 'general', subcategories: ['poor_service', 'misleading_advertising', 'contract_dispute'] },
   ],

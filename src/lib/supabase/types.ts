@@ -14,6 +14,7 @@ export type Industry =
   | 'transportation'
   | 'food_beverage'
   | 'technology'
+  | 'retail'
   | 'other';
 
 export type DesiredOutcome =
@@ -129,8 +130,37 @@ export interface RightsCache {
   issue_category: string;
   locale: string;
   content: string;
+  law_registry_id: string | null;
   created_at: string;
   updated_at: string;
+}
+
+export interface LawRegistry {
+  id: string;
+  country_code: string;
+  industry: string;
+  law_name: string;
+  statute_number: string;
+  effective_date: string;
+  source_url: string;
+  regulator_name: string;
+  regulator_url: string;
+  regulator_complaint_url: string | null;
+  last_verified_at: string;
+  verification_interval_days: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LawVersion {
+  id: string;
+  law_id: string;
+  version_label: string;
+  amendment_date: string;
+  key_changes: string;
+  affects_rights: boolean;
+  source_url: string | null;
+  created_at: string;
 }
 
 export interface Subscription {

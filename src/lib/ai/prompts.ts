@@ -1,3 +1,5 @@
+import { getLawReference } from './laws/index';
+
 export function getRightsBriefingPrompt(params: {
   country_code: string;
   industry: string;
@@ -5,17 +7,47 @@ export function getRightsBriefingPrompt(params: {
   locale: string;
 }): string {
   const { country_code, industry, issue_category, locale } = params;
+  const law = getLawReference(country_code, industry);
 
-  return `You are a consumer rights expert. Generate a concise rights briefing (300-500 words) for a consumer in country code "${country_code}" who has an issue in the "${industry}" industry, specifically about "${issue_category}".
+  const lawContext = law
+    ? `
+Verified legal reference — use these exact details and do not invent alternatives:
+- Law: ${law.primary_law} (${law.statute_number}, effective ${law.effective_date})
+- Regulator: ${law.regulator_name} — ${law.regulator_url}${law.regulator_complaint_url ? `\n- Complaint portal: ${law.regulator_complaint_url}` : ''}
+- Rights to convey (plain language): ${law.plain_rights.join(' | ')}
+- Company obligations: ${law.plain_obligations.join(' | ')}
+- Escalation steps: ${law.plain_escalation.join(' | ')}`
+    : '';
 
-The briefing should be written in the language corresponding to locale "${locale}" and include:
-1. Relevant consumer protection laws (e.g., for Indonesia: UU No. 8/1999 tentang Perlindungan Konsumen)
-2. The applicable regulator and how to contact them
-3. What the company is legally obligated to do
-4. The consumer's specific rights in this situation
-5. Escalation options if the company doesn't respond
+  return `You are a consumer rights advocate helping an everyday person understand their rights — NOT a lawyer writing for other lawyers.
 
-Be factual, specific, and empowering. Use simple language accessible to non-lawyers. Format with clear headings.`;
+Generate a rights briefing for a consumer in ${country_code} with a "${issue_category}" issue in the "${industry}" sector. Write in the language for locale "${locale}".
+${lawContext}
+
+## OUTPUT FORMAT — follow this structure exactly:
+
+### What this means for you
+[2–3 sentences in plain, everyday language explaining what the law means for their specific situation. Write as if explaining to a trusted friend. No legal jargon.]
+
+### Your rights
+[3–5 bullet points. Start each with "You have the right to..." or "You can...". One sentence each. No statute references in this section.]
+
+### What the company must do
+[2–4 bullet points on company obligations. Include specific timeframes and amounts where they exist in the law. Plain language only.]
+
+### If they don't respond
+[2–3 clear steps for escalation. Name the regulator and explain how to reach them. Plain language.]
+
+---
+### Legal reference *(for reference)*
+[1–2 sentences citing the exact law name and statute number. Keep brief. This is the ONLY section that may include formal legal citations.]
+
+Rules:
+- Plain language throughout the main body — a 16-year-old should understand it without a dictionary
+- Never use: "pursuant to", "notwithstanding", "inter alia", "ipso facto", "hereinafter", or similar legalese in the main body
+- Use specific timeframes, amounts, and deadlines where they exist in the law
+- The legal reference section is the ONLY place for statute numbers and formal law names
+- If no verified law reference was provided above, use your best knowledge but note that users should verify current laws`;
 }
 
 export function getComplaintDraftPrompt(params: {
@@ -65,4 +97,38 @@ Requirements:
 6. Include a closing that requests written confirmation of receipt
 
 Do NOT include placeholder brackets like [Your Name] - the user will add their details separately. Start the letter with "Dear Customer Service" or equivalent.`;
+}
+
+export function getLawMonitoringPrompt(params: {
+  country_code: string;
+  law_name: string;
+  statute_number: string;
+  last_verified_date: string;
+}): string {
+  const { country_code, law_name, statute_number, last_verified_date } = params;
+
+  return `You are a legal research assistant. Check if the following consumer protection law has been amended or superseded since the date shown.
+
+Law: ${law_name} (${statute_number})
+Country: ${country_code}
+Last verified: ${last_verified_date}
+
+Search official government sources for any amendments, replacements, or new implementing regulations issued since ${last_verified_date}.
+
+Respond ONLY with valid JSON matching this exact schema:
+{
+  "amended": boolean,
+  "new_version": string | null,
+  "effective_date": string | null,
+  "key_changes": string | null,
+  "confidence": "high" | "medium" | "low",
+  "source_urls": string[]
+}
+
+- "amended": true if any change was found, false if the law appears unchanged
+- "new_version": the new statute number or amendment name if changed, otherwise null
+- "effective_date": ISO date (YYYY-MM-DD) when the change takes effect, otherwise null
+- "key_changes": plain-language summary of what changed for consumers (1–3 sentences), otherwise null
+- "confidence": how confident you are in this assessment based on the sources found
+- "source_urls": list of official government URLs you found (empty array if none found)`;
 }
